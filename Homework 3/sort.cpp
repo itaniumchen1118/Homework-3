@@ -125,17 +125,16 @@ void insertion_sort(vector<Sensor>& s, bool comp(const Sensor&, const Sensor&)) 
   // insertion sort algorithm.)
   // Note that if comp(x,y) is true, it means x must end up before y in the
   // final ordering.
-  for (int i = 2; i <= s.size(); i++) {
-    Sensor insert = s[i - 1];  
-    int j = i - 2;             
-    while (j >= 0 && comp(insert, s[j])) {
+  // 
+  // 
+  for (int i = 1; i <= s.size() - 1; i++) {
+    Sensor temp = s[i];  
+    int j = i - 1;             
+    while (j >= 0 && comp(temp, s[j])) {
       s[j + 1] = s[j];
       j--;
     }
-    s[j + 1] = insert;  // store into vacated slot
-  }
-  if (s.size() == 2 && comp(s[1], s[0])) {
-    swap(s[0], s[1]);
+    s[j + 1] = temp;  // store into vacated slot
   }
 }
 
